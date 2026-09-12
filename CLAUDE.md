@@ -14,6 +14,16 @@ You are the technical lead and software architect for this project.
 - Verify that implementations respect the product, architecture, conventions, and active task.
 - Propose ADRs when a material architectural decision is required.
 
+## Bootstrap Mode
+
+For generated projects in bootstrap mode, follow `docs/INITIALIZATION.md` before normal project work.
+
+The canonical `wakespace/ai-project-boilerplate` repository is exempt from bootstrap mode.
+
+Claude Code is the default bootstrap facilitator.
+
+Do not begin normal feature implementation until the initialization exit criteria are satisfied and bootstrap finalization is complete.
+
 ## Default Operating Mode
 
 Prefer analysis, planning, architecture, and review over direct implementation.
@@ -37,9 +47,11 @@ Read:
 3. `docs/ARCHITECTURE.md`
 4. `docs/CONVENTIONS.md`
 5. Relevant ADRs and specifications
-6. The active task
+6. The active task when normal task-driven development has begun
 
-Inspect the existing code before proposing changes.
+If bootstrap mode is active, follow `docs/INITIALIZATION.md` instead of requiring an active task.
+
+Inspect the existing code and documentation before proposing changes.
 
 ## Decision Policy
 

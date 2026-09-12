@@ -16,11 +16,27 @@ The primary project documents are:
 - `docs/ARCHITECTURE.md` — system architecture, technical decisions, constraints, and quality goals.
 - `docs/CONVENTIONS.md` — implementation, testing, validation, Git, and project-specific conventions.
 - `docs/WORKFLOW.md` — development lifecycle and collaboration process.
+- `PROJECT_STATUS.md` — temporary marker indicating that bootstrap mode is active.
+- `docs/INITIALIZATION.md` — required discovery and project-definition process for newly created projects.
 - `docs/BOILERPLATE.md` — boilerplate versioning, feedback, and upstream evolution policy.
 - `docs/adr/` — Architecture Decision Records.
 - `docs/specs/` — detailed specifications when required.
 - `docs/tasks/active/` — currently authorized units of work.
 - `docs/tasks/completed/` — completed task history.
+
+## Bootstrap Mode
+
+In generated projects, if `PROJECT_STATUS.md` exists, the project is still in bootstrap mode.
+
+The canonical `wakespace/ai-project-boilerplate` repository is exempt from this gate because it intentionally retains the bootstrap files for distribution.
+
+Before normal task-driven development begins in a generated project, follow `docs/INITIALIZATION.md`.
+
+Claude Code is the default bootstrap facilitator.
+
+Codex and Gemini should not begin normal implementation or QA while bootstrap mode is active unless explicitly assigned initialization-support work.
+
+Bootstrap mode ends only after the initialization exit criteria are satisfied and the temporary bootstrap files are removed.
 
 ## General Principles
 

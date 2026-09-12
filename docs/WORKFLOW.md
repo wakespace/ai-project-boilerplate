@@ -4,6 +4,46 @@ This document defines the default development lifecycle for projects using this 
 
 The goal is to keep work explicit, reviewable, testable, and easy to transfer between human contributors and AI agents.
 
+## 0. Initialize the Project
+
+A newly created repository starts with generic boilerplate documents and:
+
+`PROJECT_STATUS.md` → `Status: NOT_STARTED`
+
+Before normal task-driven development begins, initialize the project according to:
+
+`docs/INITIALIZATION.md`
+
+Claude Code is the default initialization facilitator.
+
+When the initialization interview begins, Claude should change `PROJECT_STATUS.md` to:
+
+`Status: IN_PROGRESS`
+
+The initialization process should:
+
+- Interview the user to understand the product and problem.
+- Identify users, scope, constraints, data, integrations, and operational needs.
+- Clarify the current product goal and important exclusions.
+- Evaluate technology choices only after relevant requirements are understood.
+- Present meaningful technical alternatives and tradeoffs.
+- Obtain user approval for material architectural or long-term technology decisions.
+- Refine `docs/PRODUCT.md`.
+- Refine `docs/ARCHITECTURE.md`.
+- Refine `docs/CONVENTIONS.md`.
+- Create initial ADRs when appropriate.
+- Preserve important open questions that do not block the first task.
+
+Normal implementation should not begin while foundational project documents still contain generic boilerplate placeholders or material unresolved contradictions.
+
+Initialization is ready for finalization when the exit criteria in `docs/INITIALIZATION.md` are satisfied.
+
+Claude should then run the bootstrap finalization procedure defined in `docs/INITIALIZATION.md`.
+
+Finalization removes the temporary bootstrap machinery, including this `## 0. Initialize the Project` section from the generated project's permanent workflow.
+
+Only after bootstrap finalization should the first active task be created.
+
 ## 1. Define the Work
 
 Meaningful implementation work should normally begin with an active task in:

@@ -64,26 +64,73 @@ Supporting documentation:
 
 Templates are provided for ADRs, specifications, and tasks.
 
+## Project Initialization
+
+A repository created from this template is not immediately ready for implementation.
+
+It starts with:
+
+`PROJECT_STATUS.md` → `Status: NOT_STARTED`
+
+The first phase of every new project is project initialization.
+
+Claude Code is the default initialization facilitator and should:
+
+- Interview the user about the product, users, scope, constraints, data, integrations, and development context.
+- Refine `docs/PRODUCT.md`.
+- Refine `docs/ARCHITECTURE.md`.
+- Refine `docs/CONVENTIONS.md`.
+- Propose material technology choices with alternatives and tradeoffs.
+- Obtain user approval for important architectural and long-term technology decisions.
+- Create initial ADRs when appropriate.
+
+When the initialization interview begins, Claude changes the status to:
+
+`Status: IN_PROGRESS`
+
+When the exit criteria in `docs/INITIALIZATION.md` are satisfied, Claude runs the bootstrap finalization procedure.
+
+Finalization removes the temporary bootstrap machinery, including:
+
+- `PROJECT_STATUS.md`
+- `docs/INITIALIZATION.md`
+- bootstrap-only instructions from the permanent agent and workflow documents
+
+Only after bootstrap finalization should normal task-driven implementation begin.
+
+See:
+
+- `PROJECT_STATUS.md`
+- `docs/INITIALIZATION.md`
+
 ## Starting a New Project
 
 The recommended process is:
 
-1. Create a new project repository.
-2. Copy the boilerplate files into the project.
-3. Fill in docs/PRODUCT.md.
-4. Fill in docs/ARCHITECTURE.md.
-5. Customize docs/CONVENTIONS.md for the chosen language, framework, platform, and testing strategy.
-6. Review docs/WORKFLOW.md and adjust only when the project requires a different process.
-7. Create ADRs for material architectural decisions when needed.
-8. Create the first active task from docs/tasks/TEMPLATE.md.
-9. Begin implementation through the defined agent workflow.
+1. Create a new repository from `wakespace/ai-project-boilerplate`.
+2. Clone the generated repository locally.
+3. Open the project in the development environment.
+4. Start Claude Code from the project root.
+5. Ask Claude to begin project initialization according to `docs/INITIALIZATION.md`.
+6. Complete the interactive discovery process.
+7. Review and approve material product, technology, and architecture decisions.
+8. Confirm that `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, and `docs/CONVENTIONS.md` have been refined for the actual project.
+9. Let Claude run the bootstrap finalization procedure in `docs/INITIALIZATION.md`.
+10. Confirm that the temporary bootstrap files and instructions have been removed.
+11. Create the first active task from `docs/tasks/TEMPLATE.md`.
+12. Begin normal task-driven development.
 
-Do not copy application-specific assumptions from another project.
+Do not manually copy application-specific assumptions from another project.
+
+Do not begin implementation directly from the generic template documents.
 
 ## Default Development Flow
 
 The default flow is:
 
+Project Initialization
+    |
+    v
 Product / Task Definition
     |
     v
