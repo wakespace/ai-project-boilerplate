@@ -181,3 +181,28 @@ The boilerplate exists to make project decisions, scope, responsibilities, and e
 It should remain lightweight.
 
 Add process only when it improves clarity, correctness, maintainability, or collaboration.
+
+## Boilerplate Evolution
+
+This boilerplate is intentionally a living system.
+
+Projects created from it should help improve it through real-world use.
+
+Each generated project contains:
+
+- `BOILERPLATE_VERSION` — the boilerplate version the project is aligned with.
+- `docs/BOILERPLATE.md` — the feedback, versioning, and upstream evolution policy.
+
+When project work reveals a problem or improvement, determine whether it is project-specific or generally reusable.
+
+Project-specific changes should remain in the project.
+
+Reusable improvements should be considered for the upstream repository:
+
+wakespace/ai-project-boilerplate
+
+If an upstream improvement is identified but not implemented immediately, record it as a GitHub issue so it is not lost.
+
+Existing projects do not automatically receive newer boilerplate versions. Improvements should be reviewed and selectively backported when useful.
+
+The boilerplate should evolve from evidence gathered while building real projects rather than from speculative process design.

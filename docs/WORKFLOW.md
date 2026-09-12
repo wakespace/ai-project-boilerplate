@@ -236,3 +236,39 @@ Simple tasks may not require every stage.
 Complex or high-risk tasks may require additional specifications, ADRs, review, or validation.
 
 The important rule is that responsibilities, decisions, scope, and evidence remain explicit.
+
+## 12. Capture Boilerplate Feedback
+
+Real project work is also a source of feedback about the shared development boilerplate.
+
+During implementation, review, QA, or task completion, consider whether any discovered friction is caused by:
+
+- The current project itself.
+- The shared boilerplate, workflow, templates, or agent instructions.
+
+Examples of potential boilerplate findings include:
+
+- An agent repeatedly misunderstands its responsibility.
+- A required workflow step is missing.
+- A template does not capture information that repeatedly matters.
+- A rule is ambiguous or contradictory.
+- Review or QA responsibilities overlap poorly.
+- Validation requirements are insufficient.
+- The process introduces unnecessary friction.
+- A generally useful convention is repeatedly rediscovered.
+
+Project-specific findings should remain in the current project.
+
+Reusable findings should be explicitly identified as potential upstream boilerplate improvements.
+
+If the improvement should not be implemented immediately, record it as an issue in:
+
+wakespace/ai-project-boilerplate
+
+Do not silently work around reusable boilerplate problems and allow them to be forgotten.
+
+See:
+
+docs/BOILERPLATE.md
+
+for the complete evolution and versioning policy.

@@ -16,6 +16,7 @@ The primary project documents are:
 - `docs/ARCHITECTURE.md` — system architecture, technical decisions, constraints, and quality goals.
 - `docs/CONVENTIONS.md` — implementation, testing, validation, Git, and project-specific conventions.
 - `docs/WORKFLOW.md` — development lifecycle and collaboration process.
+- `docs/BOILERPLATE.md` — boilerplate versioning, feedback, and upstream evolution policy.
 - `docs/adr/` — Architecture Decision Records.
 - `docs/specs/` — detailed specifications when required.
 - `docs/tasks/active/` — currently authorized units of work.
@@ -134,3 +135,28 @@ Do not invent:
 When required information is missing, state what is missing and why it matters.
 
 When reasonable progress can still be made safely within the documented scope, proceed only with the parts that are supported by repository evidence.
+
+## Boilerplate Feedback
+
+This project may have been created from the reusable `wakespace/ai-project-boilerplate`.
+
+When working on a real project, agents should distinguish between:
+
+- Problems specific to the current project.
+- Problems or improvements that may apply to the shared boilerplate.
+
+Potential boilerplate improvements include recurring friction, unclear instructions, missing workflow steps, weak templates, role confusion, validation gaps, or generally useful conventions.
+
+When a reusable improvement is discovered:
+
+1. Explicitly identify it as a potential boilerplate improvement.
+2. Do not silently work around the problem as if it were only project-specific.
+3. Do not silently modify the upstream boilerplate from within the current project.
+4. Recommend either:
+   - Updating the upstream boilerplate deliberately, or
+   - Recording the improvement as a GitHub issue or TODO in `wakespace/ai-project-boilerplate`.
+5. Continue the current project safely when possible without expanding its scope unnecessarily.
+
+Before proposing an upstream change, consider whether it is genuinely reusable across projects.
+
+Consult `docs/BOILERPLATE.md` for the boilerplate evolution and versioning policy.
