@@ -349,9 +349,16 @@ The first active task may then be created and normal task-driven development may
 
 ## First Task
 
-After bootstrap finalization, define the first small, coherent, valuable task using:
+After bootstrap finalization, define the first small, coherent, valuable task
+in a new directory, using:
 
-`docs/tasks/TEMPLATE.md`
+```text
+docs/tasks/active/NNN-task-name/task.md
+```
+
+Copy `docs/tasks/TEMPLATE.md` to `task.md`. Create `review.md` or `qa.md` from
+its report template only when the corresponding stage begins. Follow
+`docs/WORKFLOW.md` for report ownership, handoffs, and closeout.
 
 The first task should move the project toward a working product rather than creating infrastructure with no demonstrated need.
 

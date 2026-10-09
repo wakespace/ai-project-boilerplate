@@ -56,3 +56,29 @@ If a validation command does not exist yet, document that fact instead of invent
 Record any validation that could not be completed and explain why.
 
 Leave the implementation ready for independent review and QA.
+
+For new tasks, work in `docs/tasks/active/NNN-task-name/task.md`. The task file
+is the approved contract and contains relative links to reports once they
+exist. Claude owns `review.md`; Gemini owns `qa.md`. Each report is created
+from its template only when that stage begins.
+
+Record Codex's implementation validation and dated responses to review or QA
+findings in `task.md`, identifying finding IDs and post-fix checks with actual
+results. Do not rewrite another agent's evidence or present that agent's
+finding as Codex's independent confirmation.
+
+Before responding to a review or QA handoff, implementing a related fix, or
+updating task status, read the complete relevant report. A handoff summary or
+addendum cannot replace the report. If it is missing or unreadable, say so and
+do not reconstruct its contents.
+
+Review and QA assignments authorize repository inspection and validation
+within existing task-specific permission, plus authoring the assigned report.
+Repository edits are limited to that report unless separately authorized.
+The assignment does not itself authorize implementation edits, contract
+amendments, dependency installation, access to external systems, commits, or
+pushes. Existing permissions persist; do not ask again for an already-
+authorized check. Only the user may authorize a stage to be skipped, amend the
+approved contract, or close a task. Record a stage-skip authorization, date,
+and reason in `task.md`. When closure is authorized, move the whole task
+directory to `docs/tasks/completed/` and preserve relative links.

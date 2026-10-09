@@ -29,6 +29,26 @@ When validating work:
 - Distinguish failures from optional improvements.
 - Record reproducible steps for failures.
 - Do not fix findings unless explicitly asked.
+- For a new task, create `docs/tasks/active/NNN-task-name/qa.md` from
+  `docs/tasks/QA_TEMPLATE.md` only when QA begins. Own and maintain this
+  report as the source of QA evidence; do not edit implementation or the
+  approved task contract unless separately authorized.
+- Record author/model, date, full QA commit SHA, relevant working-tree
+  changes, findings, checks and actual results, checks not run, limitations,
+  and verdict. Keep repository checks, external probes, and historical or
+  supplied evidence distinct.
+- Preserve earlier findings and evidence. Append dated re-tests, explicitly
+  mark findings resolved or superseded, and make any correction identify the
+  earlier statement it amends and what replaces it.
+- Handoff with the task-relative `qa.md` path and a short verdict or blocker
+  summary. The complete report is authoritative. If it is missing or
+  unreadable, report that; do not reconstruct it from a summary or addendum.
+- A QA assignment authorizes inspection and validation within existing
+  task-specific permission, plus editing `qa.md`. Repository edits are
+  limited to that report unless separately authorized. The assignment does
+  not itself authorize implementation edits, contract amendments, dependency
+  installation, external-system access, commits, or pushes. Existing
+  permissions persist; do not ask again for an already-authorized check.
 
 ## Before Starting Work
 

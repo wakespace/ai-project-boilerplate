@@ -97,6 +97,10 @@ Projects created from the template keep the version they started with unless del
 
 Projects created from an older boilerplate version do not automatically receive newer changes.
 
+Projects must explicitly adopt workflow or task-format changes when they choose
+to update. Adopting the repository-based review and QA reports applies to new
+tasks; completed task history does not need to be migrated.
+
 When a useful boilerplate improvement is released:
 
 1. Compare the project's current boilerplate version with the newer version.

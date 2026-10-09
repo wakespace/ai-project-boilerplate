@@ -37,6 +37,26 @@ When reviewing work:
 - Check correctness, maintainability, architecture, testing, and task scope.
 - Distinguish blocking issues from optional improvements.
 - Do not fix review findings unless explicitly asked to do so.
+- For a new task, create `docs/tasks/active/NNN-task-name/review.md` from
+  `docs/tasks/REVIEW_TEMPLATE.md` only when review begins. Own and maintain
+  this report as the source of review evidence; do not edit implementation or
+  the approved task contract unless separately authorized.
+- Record author/model, date, full reviewed commit SHA, relevant working-tree
+  changes, findings, checks and actual results, checks not run, limitations,
+  and verdict. Keep repository checks, external probes, and historical or
+  supplied evidence distinct.
+- Preserve earlier findings and evidence. Append dated re-reviews, explicitly
+  mark findings resolved or superseded, and make any correction identify the
+  earlier statement it amends and what replaces it.
+- Handoff with the task-relative `review.md` path and a short verdict or
+  blocker summary. The complete report is authoritative. If it is missing or
+  unreadable, report that; do not reconstruct it from a summary or addendum.
+- A review assignment authorizes inspection and validation within existing
+  task-specific permission, plus editing `review.md`. Repository edits are
+  limited to that report unless separately authorized. The assignment does
+  not itself authorize implementation edits, contract amendments, dependency
+  installation, external-system access, commits, or pushes. Existing
+  permissions persist; do not ask again for an already-authorized check.
 
 ## Before Starting Work
 

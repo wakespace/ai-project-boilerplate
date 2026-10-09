@@ -55,6 +55,11 @@ Bootstrap mode ends only after the initialization exit criteria are satisfied an
 
 Implementation work should normally be driven by an active task in `docs/tasks/active/`.
 
+New tasks use `docs/tasks/active/NNN-task-name/` with `task.md` as the
+approved contract. Create `review.md` and `qa.md` from their templates only
+when the corresponding stages begin. Existing completed tasks do not need to be
+migrated to this format.
+
 The active task defines:
 
 - The goal.
@@ -68,6 +73,23 @@ Agents must not silently expand task scope.
 Useful work discovered outside the task scope should be recorded as follow-up work rather than implemented automatically.
 
 Acceptance criteria must be treated as observable conditions that require evidence before being considered satisfied.
+
+Claude owns review evidence in `review.md`; Gemini owns QA evidence in
+`qa.md`. Codex records implementation responses and its own validation in
+`task.md`. Reports identify their author and model, date, full commit SHA,
+relevant working-tree changes, findings, actual checks and results, limitations,
+and verdict. Preserve earlier evidence through dated re-reviews/re-tests and
+explicit corrections. Read the complete relevant report before responding to
+findings; a summary or addendum cannot replace a missing or unreadable report.
+
+Review and QA assignments authorize inspection and validation already
+authorized for the task, plus editing the assigned report. Repository edits
+remain limited to that report unless separately authorized. Existing
+permissions persist; do not ask again for an already-authorized check. Only the
+user may authorize skipping a stage, amending the task contract, or closing a
+task. Record stage-skip authorization with its date and reason. Closeout moves
+the whole task directory and preserves its relative links. See
+`docs/WORKFLOW.md` for the complete procedure.
 
 ## Architecture Discipline
 

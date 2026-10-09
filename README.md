@@ -20,7 +20,7 @@ The boilerplate provides:
 - Development workflow.
 - Architecture Decision Record templates.
 - Specification templates.
-- Task lifecycle templates.
+- Task, review, and QA report templates.
 
 Application code, frameworks, libraries, and deployment choices should be defined separately for each project.
 
@@ -59,10 +59,13 @@ Supporting documentation:
 
 - docs/adr/ — Architecture Decision Records.
 - docs/specs/ — detailed specifications.
-- docs/tasks/active/ — current work.
+- docs/tasks/active/ — current work, with one directory per task.
 - docs/tasks/completed/ — completed work history.
 
-Templates are provided for ADRs, specifications, and tasks.
+Templates are provided for ADRs, specifications, tasks, review reports, and QA
+reports. New tasks use `docs/tasks/active/NNN-task-name/task.md`.
+`review.md` and `qa.md` are created from their templates only when review and
+QA begin.
 
 ## Project Initialization
 
@@ -117,12 +120,17 @@ The recommended process is:
 8. Confirm that `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, and `docs/CONVENTIONS.md` have been refined for the actual project.
 9. Let Claude run the bootstrap finalization procedure in `docs/INITIALIZATION.md`.
 10. Confirm that the temporary bootstrap files and instructions have been removed.
-11. Create the first active task from `docs/tasks/TEMPLATE.md`.
+11. Create `docs/tasks/active/NNN-task-name/` and copy
+    `docs/tasks/TEMPLATE.md` to it as `task.md`.
 12. Begin normal task-driven development.
 
 Do not manually copy application-specific assumptions from another project.
 
 Do not begin implementation directly from the generic template documents.
+
+The repository-based review and QA report workflow applies to new tasks after
+the project adopts this boilerplate workflow. Existing projects choose when to
+adopt it, and do not need to migrate completed task history.
 
 ## Default Development Flow
 
@@ -131,34 +139,39 @@ The default flow is:
 Project Initialization
     |
     v
-Product / Task Definition
+Product / Task Definition (`task.md`)
     |
     v
 Architecture Analysis when needed
     |
     v
-Codex Implementation
+Codex Implementation and Validation
     |
     v
-Validation
+Claude Code Review (`review.md`, created when review starts)
     |
     v
-Claude Code Review
-    |
-    v
-Gemini Integration / QA
+Gemini Integration / QA (`qa.md`, created when QA starts)
     |
     v
 Fix and Revalidate if needed
     |
     v
-Task Completion
+User-authorized Task Completion
 
 This is a default responsibility flow, not a mandatory ceremony.
 
-Simple tasks may require fewer stages.
+Some tasks may not need every optional stage, but skipping review or QA requires
+explicit user authorization recorded in `task.md`.
 
 Complex or high-risk tasks may require additional specifications, ADRs, review, or QA.
+
+Claude owns review evidence, Gemini owns QA evidence, and Codex records
+implementation responses and its own validation in `task.md`. Read the
+complete report before responding to its findings. Reports do not amend the
+approved task contract; stage skips, contract amendments, and closure require
+explicit user authorization. See `docs/WORKFLOW.md` for report evidence,
+permissions, handoffs, and closeout.
 
 ## Source of Truth
 
@@ -170,9 +183,9 @@ When information is missing or contradictory, agents should report the problem i
 
 ## Task Discipline
 
-Meaningful implementation work should normally be driven by an active task in:
+Meaningful implementation work should normally be driven by a task directory in:
 
-docs/tasks/active/
+`docs/tasks/active/NNN-task-name/`
 
 Tasks should define:
 
@@ -182,9 +195,11 @@ Tasks should define:
 - Out of scope.
 - Acceptance criteria.
 
-When a task is complete, it should be moved to:
+After the user authorizes task closure, move the whole task directory to:
 
-docs/tasks/completed/
+`docs/tasks/completed/`
+
+Preserve the directory name and relative report links.
 
 Completed tasks form part of the project's technical history.
 

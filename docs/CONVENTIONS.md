@@ -100,6 +100,11 @@ If a check cannot be completed, record why.
 
 Validation failures must not be hidden, bypassed, or misrepresented.
 
+For the repository-based task workflow, Codex records its implementation checks
+and results in the task's `task.md`; Claude and Gemini record their own review
+and QA evidence in `review.md` and `qa.md`. See `docs/WORKFLOW.md` for report
+ownership and handoff rules.
+
 ## Git
 
 - Keep commits focused on one logical unit of work.

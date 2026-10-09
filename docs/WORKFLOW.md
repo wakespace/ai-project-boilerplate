@@ -46,13 +46,21 @@ Only after bootstrap finalization should the first active task be created.
 
 ## 1. Define the Work
 
-Meaningful implementation work should normally begin with an active task in:
+Meaningful implementation work should normally begin with a task directory in:
 
-docs/tasks/active/
+`docs/tasks/active/NNN-task-name/`
 
-Use:
+Copy `docs/tasks/TEMPLATE.md` to the directory as `task.md`. This file is the
+approved task contract. The directory gains `review.md` and `qa.md` from their
+respective templates only when those stages begin; do not create empty reports
+in advance. At those stages, the active directory has this shape:
 
-docs/tasks/TEMPLATE.md
+```text
+docs/tasks/active/NNN-task-name/
+  task.md
+  review.md   # created when review begins
+  qa.md       # created when QA begins
+```
 
 The task should define:
 
@@ -61,6 +69,22 @@ The task should define:
 - Scope
 - Out of scope
 - Acceptance criteria
+
+`task.md` also records approvals and contract amendments, Codex's own
+implementation validation, short report verdicts, and Codex's dated responses
+to findings. Add a relative Markdown link to each report when that report is
+created. Before then, identify the stage as not started without linking to a
+file that does not yet exist.
+
+Only the user may authorize an amendment to the approved contract or its
+acceptance criteria. Record the authorization, date, and amendment in
+`task.md`, preserving the earlier contract. Review and QA reports provide
+evidence against the approved contract; they cannot change it.
+
+Review and QA may be skipped only with explicit user authorization. Record the
+authorization, date, and reason in `task.md`, and mark the stage not required.
+Do not create a report for a stage that has not started or was authorized as
+not required.
 
 Do not begin implementation while important requirements are still undocumented or contradictory.
 
@@ -141,7 +165,10 @@ Examples include:
 - Build or compilation
 - Integration checks
 
-Record validation evidence in the task's Validation section.
+Codex records its own dated validation checks, commands, actual results,
+unexecuted checks, and limitations in `task.md`. Keep detailed review and QA
+evidence in their respective reports. Do not present another agent's report
+evidence as Codex's own validation.
 
 Do not hide failing checks.
 
@@ -150,6 +177,13 @@ If a relevant check cannot be performed, record why.
 ## 7. Technical Review
 
 Claude Code is the default independent technical reviewer.
+
+When review begins, Claude creates `review.md` from
+`docs/tasks/REVIEW_TEMPLATE.md`. Claude owns the review evidence. The report
+must identify the author and model, date, full reviewed commit SHA, relevant
+working-tree changes, findings, actual checks and results, checks not run,
+limitations, and verdict. Distinguish repository checks, external probes, and
+historical or supplied evidence.
 
 Review the actual implementation and relevant Git diff.
 
@@ -174,11 +208,30 @@ Review findings should distinguish:
 
 Do not silently fix findings during review unless explicitly assigned to do so.
 
-Record relevant findings and resolutions in the task's Review section.
+Keep findings and review evidence in `review.md`. Preserve earlier evidence by
+appending dated re-reviews. Explicitly mark findings resolved or superseded;
+corrections identify the earlier statement they amend and its replacement.
+Handoff names the task-relative report path and gives a short verdict or
+blocker summary. The complete report is authoritative; a summary or addendum
+does not replace a missing or unreadable report.
+
+Review assignment authorizes repository inspection and validation within
+existing task-specific permission, plus editing `review.md`. Repository edits
+are limited to that report unless separately authorized. The assignment does
+not itself authorize implementation changes, contract amendments, dependency
+installation, external-system access, commits, or pushes. Existing permissions
+persist; do not ask again for an already-authorized check. Do not fix
+implementation findings during review unless separately assigned to do so.
 
 ## 8. Integration and QA
 
 Antigravity / Gemini is the default integration and QA agent.
+
+When QA begins, Gemini creates `qa.md` from `docs/tasks/QA_TEMPLATE.md`.
+Gemini owns the QA evidence. The report must identify the author and model,
+date, full QA commit SHA, relevant working-tree changes, findings, actual
+checks and results, checks not run, limitations, and verdict. Distinguish
+repository checks, external probes, and historical or supplied evidence.
 
 QA should validate observable behavior rather than relying only on code inspection.
 
@@ -194,7 +247,20 @@ Use the validation method appropriate to the project, such as:
 
 Verify the active task's acceptance criteria with evidence.
 
-Record QA findings in the task's QA section.
+Keep findings and QA evidence in `qa.md`. Preserve earlier evidence by
+appending dated re-tests. Explicitly mark findings resolved or superseded;
+corrections identify the earlier statement they amend and its replacement.
+Handoff names the task-relative report path and gives a short verdict or
+blocker summary. The complete report is authoritative; a summary or addendum
+does not replace a missing or unreadable report.
+
+QA assignment authorizes repository inspection and validation within existing
+task-specific permission, plus editing `qa.md`. Repository edits are limited
+to that report unless separately authorized. The assignment does not itself
+authorize implementation changes, contract amendments, dependency
+installation, external-system access, commits, or pushes. Existing permissions
+persist; do not ask again for an already-authorized check. Do not fix QA
+findings unless separately assigned to do so.
 
 Do not mark an acceptance criterion as satisfied without evidence.
 
@@ -202,10 +268,17 @@ Do not mark an acceptance criterion as satisfied without evidence.
 
 When review or QA identifies a blocking problem:
 
-1. Record the finding.
-2. Assign the fix as implementation work.
-3. Re-run relevant validation.
-4. Re-review or re-test affected behavior.
+1. Codex reads the complete relevant report before responding, changing task
+   status, or implementing a fix. A handoff summary or addendum cannot replace
+   a missing or unreadable report; report that condition instead of inferring
+   the findings.
+2. Record a dated Codex response in `task.md`, using the finding IDs and
+   stating the disposition. Do not rewrite report evidence or claim another
+   agent's finding as independently confirmed.
+3. Assign any fix as implementation work and record Codex's own post-fix
+   validation, commands, and actual results in `task.md`.
+4. Request a re-review or re-test of affected behavior as appropriate. The
+   report owner appends evidence; earlier findings and checks remain intact.
 
 Do not expand the original task with unrelated improvements.
 
@@ -218,11 +291,14 @@ A task is ready to complete when:
 - The documented scope has been implemented.
 - Acceptance criteria are satisfied.
 - Relevant validation has passed or documented limitations are understood.
-- Blocking review findings are resolved.
-- Relevant QA has been completed.
+- Review has been completed or explicitly authorized as not required.
+- Blocking review findings are resolved when review was performed.
+- Relevant QA has been completed or explicitly authorized as not required.
 - Documentation reflects meaningful changes.
 
-Update the task status and move it from:
+Task closure and moving the directory require explicit user authorization.
+Once authorized, record the closure status and date in `task.md`, then move
+the directory from:
 
 docs/tasks/active/
 
@@ -231,6 +307,10 @@ to:
 docs/tasks/completed/
 
 The completed task becomes part of the project's historical record.
+
+Move the directory as a whole so `review.md`, `qa.md`, and all relative links
+remain together. Existing projects adopt this report workflow explicitly;
+completed task history does not need to be migrated.
 
 ## 11. Commit the Work
 
@@ -271,11 +351,20 @@ Task Completion
 
 This flow is a default, not a rigid ceremony.
 
-Simple tasks may not require every stage.
+Some tasks may not need every optional stage, but skipping review or QA requires
+explicit user authorization recorded in `task.md`.
 
 Complex or high-risk tasks may require additional specifications, ADRs, review, or validation.
 
 The important rule is that responsibilities, decisions, scope, and evidence remain explicit.
+
+Report files are created only when their stage begins. Claude owns review
+evidence, Gemini owns QA evidence, and Codex records its responses and its own
+validation in `task.md`. Assignments permit inspection and validation already
+authorized for the task, but repository edits remain limited to the assigned
+report unless separately authorized. Existing permissions persist. Only the
+user may authorize skipping a stage, amending the approved contract, or closing
+the task.
 
 ## 12. Capture Boilerplate Feedback
 
